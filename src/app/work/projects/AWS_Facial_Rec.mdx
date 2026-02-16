@@ -1,0 +1,134 @@
+---
+title: "Cloud-Based Facial Recognition with AWS Rekognition"
+publishedAt: "2026-02-16"
+summary: "Building a real-time facial recognition system with AWS Rekognition, face enrollment pipelines, and live camera search."
+team:
+  - name: "Kassandra Cardenas"
+    role: "Systems Developer"
+    avatar: "/images/projects/project-01/AWS_workflow.png"
+    linkedIn: "https://www.linkedin.com/in/kasscardenas/"
+link: ""
+---
+
+## Overview
+
+In this project, I built a facial recognition system that integrates AWS Rekognition for cloud-based face collection enrollment and real-time camera search.
+
+The system allows:
+- Enrolling faces into a secure AWS face collection
+- Storing metadata locally
+- Performing live camera matching against the cloud collection
+- Evaluating recognition performance locally
+
+This project combines computer vision, cloud APIs, and real-time systems engineering.
+
+---
+
+## System Architecture
+
+The system consists of several components:
+
+- **Face Enrollment Pipeline**
+  - Detects faces from images
+  - Uploads them to an AWS Rekognition collection
+  - Stores metadata locally for reference
+
+- **Live Camera Search**
+  - Captures frames from a local camera
+  - Sends detected faces to AWS Rekognition
+  - Searches against the enrolled collection
+  - Returns best match + confidence score
+
+- **Local Evaluation Module**
+  - Tests recognition accuracy
+  - Compares predictions with ground truth labels
+  - Logs confidence thresholds
+
+This architecture separates enrollment, inference, and evaluation into modular scripts.
+
+---
+
+## Key Features
+
+- **AWS Rekognition Integration**  
+  Created and managed face collections using AWS APIs.
+
+- **Real-Time Camera Matching**  
+  Streamed camera input and performed live face searches against the cloud.
+
+- **Confidence Threshold Tuning**  
+  Experimented with match thresholds to balance false positives and false negatives.
+
+- **Modular Design**
+  - `enroll_faces.py`
+  - `camera_search.py`
+  - `eval_local.py`
+  - `face_database.py`
+  - `face_rec.py`
+
+- **Cloud + Local Hybrid System**
+  Managed local data while leveraging cloud-scale facial embedding search.
+
+---
+
+## Technologies Used
+
+- Python  
+- OpenCV  
+- AWS Rekognition API  
+- boto3  
+- Local file-based metadata storage  
+- Real-time video processing  
+
+---
+
+## Challenges
+
+### Latency
+Cloud API calls introduce latency in live camera search. I had to:
+
+- Optimize frame processing
+- Avoid unnecessary API calls
+- Tune confidence thresholds to reduce repeated queries
+
+### Threshold Tuning
+Choosing an appropriate confidence score was critical.  
+Low thresholds increased false positives.  
+High thresholds increased false negatives.
+
+### Data Management
+Managing local metadata consistently with cloud collections required careful mapping between face IDs and labels.
+
+---
+
+## Ethical Reflection
+
+Facial recognition systems raise serious concerns around:
+
+- Bias in training datasets  
+- Consent and surveillance  
+- Privacy and data storage  
+- Misidentification risks  
+
+Building this system reinforced how technically straightforward deployment can be — and how carefully these systems must be designed, regulated, and evaluated.
+
+---
+
+## Outcome
+
+The system successfully:
+
+- Enrolled multiple faces into AWS collections  
+- Identified known faces from live camera input  
+- Returned confidence scores in real-time  
+
+This project deepened my understanding of:
+
+- Cloud-based ML inference pipelines  
+- Real-time computer vision systems  
+- API-driven architecture  
+- Trade-offs between accuracy, latency, and privacy  
+
+---
+
+This project reflects my interest in building intelligent systems while critically examining their societal impact.

@@ -2,20 +2,14 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
-};
-
-const newsletter: Newsletter = {
-  display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  firstName: "Kassandra",
+  lastName: "Cardenas",
+  name: "Kassandra Cardenas",
+  role: "Computer Science @ UW • Neural & Computational Engineering • Builder + Student Leader",
+  avatar: "/images/gallery/kass.jpg",
+  email: "kassac2@uw.edu",
+  location: "America/Los_Angeles",
+  languages: ["English", "Spanish"],
 };
 
 const social: Social = [
@@ -25,29 +19,23 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/KassandraCar",
     essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/kasscardenas",
     essential: true,
   },
   {
     name: "Instagram",
     icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
+    link: "https://www.instagram.com/kassisnofun/",
     essential: false,
   },
   {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
-    essential: true,
-  },
-  {
-    name: "Email",
+    name: "kassandra383450@gmail.com",
     icon: "email",
     link: `mailto:${person.email}`,
     essential: true,
@@ -59,25 +47,20 @@ const home: Home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  description:"Kassandra Cardenas — UW Computer Science student working across distributed systems, embedded/biomedical research, and community leadership.",
+  headline: <>Hi, I'm Kass!</>,
   featured: {
-    display: true,
-    title: (
-      <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
-        <Line background="brand-alpha-strong" vert height="20" />
-        <Text marginRight="4" onBackground="brand-medium">
-          Featured work
-        </Text>
-      </Row>
-    ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    display: false,
+    title: <></>,
+    href: "",
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+      I’m a Computer Science student at the University of Washington with a minor in
+      Neural &amp; Computational Engineering. I build systems across full-stack web,
+      distributed systems, and embedded/biomedical research — and I co-lead AVELA to
+      expand access to STEM education.
+    </>
   ),
 };
 
@@ -85,7 +68,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, a UW CS student working across systems, research, and community leadership.`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -102,10 +85,16 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
-      </>
+        I’m Kassandra (Kass) Cardenas — a Computer Science student at the University of Washington
+        with a minor in Neural &amp; Computational Engineering. I’m interested in research that
+        connects computation and biological systems, and I build projects across full-stack web,
+        distributed systems, and embedded/biomedical engineering.
+      <br />
+      <br />
+        Outside of coursework and labs, I’m deeply involved in community work. I co-lead AVELA (A
+        Vision for Engineering Literacy &amp; Access), supporting K–12 outreach, scholarship nights,
+        and campus partnerships that expand access to STEM opportunities.
+        </>
     ),
   },
   work: {
@@ -113,141 +102,102 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Seattle Children’s Hospital",
+        timeframe: "Sept 2024 – Present",
+        role: "Research & Development Engineer",
         achievements: [
-          <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
-          <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
-          </>,
+          <>Prototype otoacoustic emission (OAE) systems; designed for acoustic isolation and electrical integrity.</>,
+          <>Analyzed failure modes including stimulus leakage, impedance mismatch, and microphone bias routing issues.</>,
+          <>Proposed probe geometry and connector architecture improvements to increase signal fidelity.</>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Valkyra Technologies",
+        timeframe: "Jun 2025 – Present",
+        role: "Software Engineer",
         achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
+          <>Develop XR/Unity experiences while exploring real-time human-pose integration using MediaPipe and Blender.</>,
+          <>Prototype movement-tracking workflows using Python + Unity to validate joint trajectories and pose quality.</>,
+          <>Build tooling to handle edge cases (including ground-contact poses) for more robust tracking.</>,
+        ],
+        images: [],
+      },
+      {
+        company: "Lyers Lab",
+        timeframe: "Jun 2025 – Aug 2025",
+        role: "Embedded Systems Engineer Intern",
+        achievements: [
+          <>Designed low-power circuits and supported hardware bring-up for constrained sensing/communication prototypes.</>,
+          <>Programmed microcontroller tooling in C/C++ and Python to support data collection and control experiments.</>,
+          <>Ran lab testing and debugging workflows to improve reliability and iteration speed.</>,
         ],
         images: [],
       },
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
+    display: true,
+    title: "Education",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "University of Washington",
+        description: <>B.S. Computer Science • Minor: Neural &amp; Computational Engineering</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Coursework highlights",
+        description: (
+          <>
+            Distributed Systems (Paxos/Multi-Paxos, sharding), Systems Programming, Accessibility &amp; Inclusive Design,
+            Data Structures, Security
+          </>
+        ),
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
-        description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
-        ),
-        tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Full-stack Web",
+        description: <>Next.js, React, TypeScript, Supabase/Postgres, REST APIs, auth, and deployments (Vercel).</>,
+        tags: [{ name: "Next.js" }, { name: "TypeScript" }, { name: "Supabase" }],
+        images: [],
       },
       {
-        title: "Next.js",
-        description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
-        ),
-        tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Distributed Systems",
+        description: <>Primary-backup replication, Paxos/Multi-Paxos, linearizability, leader election, sharded KV stores.</>,
+        tags: [{ name: "Java" }],
+        images: [],
+      },
+      {
+        title: "Embedded + Biomedical",
+        description: <>Microcontrollers, low-power constraints, signal integrity, lab instrumentation, prototyping.</>,
+        tags: [{ name: "C/C++" }, { name: "Python" }],
+        images: [],
+      },
+      {
+        title: "Accessibility",
+        description: <>Audits + fixes: semantic structure, keyboard navigation, focus visibility, and contrast improvements.</>,
+        tags: [{ name: "WCAG" }],
+        images: [],
       },
     ],
   },
 };
-
 const blog: Blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
+  title: "Writing",
+  description: `Notes on accessibility, research, engineering, and student leadership.`,
 };
 
 const work: Work = {
   path: "/work",
   label: "Work",
   title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  description: `Selected projects across software, systems, and applied research.`,
 };
 
 const gallery: Gallery = {
@@ -259,46 +209,46 @@ const gallery: Gallery = {
   // These are placeholder images, replace with your own
   images: [
     {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
+      src: "/images/gallery/becu.png",
       alt: "image",
       orientation: "vertical",
     },
     {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
+      src: "/images/gallery/Hike.png",
       alt: "image",
       orientation: "vertical",
     },
     {
-      src: "/images/gallery/vertical-2.jpg",
+      src: "/images/gallery/kass.jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/Library.png",
       alt: "image",
       orientation: "vertical",
     },
     {
-      src: "/images/gallery/horizontal-2.jpg",
+      src: "/images/gallery/olympia.png",
+      alt: "image",
+      orientation: "vertical",
+    },
+    {
+      src: "/images/gallery/temple.png",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/horizontal-4.jpg",
+      src: "/images/gallery/temple1.png",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/vertical-3.jpg",
+      src: "/images/gallery/tree.png",
       alt: "image",
       orientation: "vertical",
     },
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, home, about, blog, work, gallery };

@@ -1,0 +1,164 @@
+---
+title: "Neural Population Decoding with Allen Brain Observatory Data"
+publishedAt: "2026-02-02"
+summary: "Decoding visual stimulus orientation and temporal frequency from neural population activity using LDA and QDA."
+images:
+  - "/images/projects/project-01/cell_index.png"
+team:
+  - name: "Kassandra Cardenas"
+    role: "Computational Neuroscience Researcher"
+link: ""
+---
+
+## Overview
+
+In this project, I analyzed neural population activity from the Allen Brain Observatory to decode visual stimulus features from calcium imaging data.
+
+Using responses to drifting gratings stimuli (8 orientations × 5 temporal frequencies), I built classifiers to determine whether neural population activity could predict:
+
+- Stimulus orientation  
+- Temporal frequency  
+- Blank vs stimulus trials  
+
+This project explores **population coding**, dimensionality, and how decoding performance scales with the number of neurons.
+
+---
+
+## Dataset
+
+The data comes from the Allen Brain Observatory visual coding dataset. Each stimulus condition (orientation + temporal frequency) was repeated 15 times in randomized order.
+
+From the dataset, I:
+
+- Extracted ΔF/F traces for 290 neurons  
+- Computed mean activity during each stimulus presentation  
+- Constructed a design matrix of shape `[trials × neurons]`  
+- Created stimulus labels for orientation and temporal frequency  
+
+---
+
+## Step 1: Tuning Curves
+
+I first computed tuning curves for:
+
+- Orientation tuning
+- Temporal frequency tuning
+
+For each neuron, I averaged activity across repeated stimulus presentations.
+
+This revealed:
+- Strong orientation tuning in subsets of neurons  
+- Much weaker and more overlapping encoding for temporal frequency  
+
+This motivated the decoding analysis.
+
+---
+
+## Step 2: Decoding with Two Neurons (LDA)
+
+To build intuition, I first trained a Linear Discriminant Analysis (LDA) classifier using only **two strongly tuned neurons**.
+
+Training accuracy: ~33%  
+Test accuracy: ~29%  
+
+Despite being low, training and test performance were nearly identical, indicating:
+
+- No overfitting  
+- Significant overlap in neural response distributions  
+- Limited separability with only two neurons  
+
+This demonstrated that single or small subsets of neurons do not strongly encode all stimulus dimensions.
+
+---
+
+## Step 3: Population Decoding with All Neurons
+
+Using all 290 neurons dramatically improved decoding:
+
+Training accuracy: 100%  
+Test accuracy: ~65%  
+
+The confusion matrix showed:
+
+- Most errors occurred between nearby orientations  
+- Performance plateaued as neuron count increased  
+- Improvements were strongest when adding early neurons  
+
+This reflects classic **population coding principles**:
+- Information is distributed across neurons  
+- Combining responses improves separability  
+- Gains saturate due to correlated variability and redundancy  
+
+---
+
+## Scaling with Number of Neurons
+
+I evaluated decoding performance as a function of neuron count by:
+
+- Randomly sampling increasing subsets of neurons  
+- Training LDA repeatedly  
+- Measuring test accuracy  
+
+Performance increased rapidly with the first ~50–100 neurons, then plateaued.
+
+This demonstrates:
+- Early neurons contribute large independent information  
+- Later neurons add diminishing returns  
+- Neural representations are partially redundant  
+
+---
+
+## Quadratic Discriminant Analysis (QDA)
+
+To test a more expressive model, I implemented Quadratic Discriminant Analysis (QDA), which allows curved decision boundaries.
+
+Results showed:
+
+- Slightly improved training accuracy  
+- Minimal or inconsistent improvements on test accuracy  
+
+This suggests:
+- Neural separability is limited by biological noise and overlap  
+- More complex classifiers do not necessarily outperform linear models  
+- Linear readouts already capture much of the available structure  
+
+---
+
+## Key Concepts Demonstrated
+
+- Population coding  
+- Neural tuning curves  
+- Linear vs nonlinear classifiers  
+- Bias–variance tradeoff  
+- Overfitting detection  
+- Confusion matrix interpretation  
+- Dimensional scaling in high-dimensional data  
+
+---
+
+## Why This Matters
+
+This project bridges:
+
+- Neuroscience  
+- Machine learning  
+- Systems-level data analysis  
+
+It illustrates how neural populations encode stimulus information and how decoding accuracy scales with dimensionality — a core principle in computational neuroscience.
+
+More broadly, it highlights that increasing model complexity does not automatically improve generalization. Biological noise and representational overlap impose fundamental limits.
+
+---
+
+## Technologies Used
+
+- Python  
+- NumPy / Pandas  
+- Matplotlib  
+- Scikit-learn (LDA, QDA)  
+- AllenSDK  
+- Brain Observatory dataset  
+
+---
+
+This project reflects my broader interest in neural modeling, population dynamics, and the intersection of neuroscience and machine learning.

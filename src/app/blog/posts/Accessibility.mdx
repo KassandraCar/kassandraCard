@@ -1,0 +1,107 @@
+---
+title: "Redesigning my portfolio with accessibility in mind"
+summary: "A before-and-after look at improving keyboard navigation, heading structure, and image alt text across my personal website."
+publishedAt: "2026-02-16"
+tag: "Accessibility"
+---
+
+## Why I decided to revisit my portfolio
+
+My personal website is more than just a collection of projects — it’s a representation of who I am as a computer scientist. It showcases my work in distributed systems, embedded systems, accessibility, and community leadership.  
+
+But after taking a closer look at it through an accessibility lens, I realized something important: I had unintentionally designed it with assumptions about who my audience was.
+
+Like many developers, I had optimized for aesthetics and performance. I hadn’t fully considered how someone using a screen reader, keyboard-only navigation, or high-contrast settings would experience it.
+
+This redesign was an opportunity to correct that.
+
+---
+
+## What I tested
+
+To evaluate my site, I used:
+
+- Keyboard-only navigation (tab + shift+tab)
+- VoiceOver (macOS screen reader)
+- Chrome Lighthouse Accessibility Audit
+
+I focused on the following tasks:
+
+1. Navigating the homepage using only the keyboard  
+2. Reading blog content using a screen reader  
+3. Accessing project links and external navigation  
+
+---
+
+## Problems I discovered
+
+### 1. Missing or weak alt text (Perceivable)
+
+Some images relied on generic or auto-generated alt text. While the site looked visually polished, the descriptive experience for screen reader users was incomplete.
+
+For example, project thumbnails and avatar images did not meaningfully describe their purpose.
+
+---
+
+### 2. Inconsistent heading structure (Understandable)
+
+Certain pages skipped heading levels or relied heavily on styled text components rather than semantic heading tags.  
+
+This made it harder for screen reader users to navigate by heading structure.
+
+---
+
+### 3. Limited visible focus indicators (Operable)
+
+While keyboard navigation technically worked, focus states were subtle and easy to miss.  
+
+This creates friction for users who rely on visual focus cues to understand where they are on the page.
+
+---
+
+## What I changed
+
+### Improved alt text
+
+I added meaningful alt text to:
+- Profile image
+- Project thumbnails
+- Blog images
+
+Instead of generic labels, I now describe the purpose of the image in context.
+
+---
+
+### Fixed heading hierarchy
+
+I reviewed heading usage across pages to ensure:
+
+- One clear `<h1>` per page  
+- Logical progression (`h2 → h3 → h4`)  
+- No skipped structural levels  
+
+This improves both usability and SEO.
+
+---
+
+### Strengthened focus visibility
+
+I adjusted focus styles to ensure:
+
+- Clear visual indicators  
+- Sufficient contrast  
+- Consistent focus behavior across interactive elements  
+
+This significantly improved keyboard navigation clarity.
+
+---
+
+## Reflection
+
+Accessibility is not a feature — it is a baseline expectation.  
+
+By overlooking accessibility in my initial portfolio design, I unintentionally reinforced the assumption that my audience would be non-disabled. In technology spaces, that assumption contributes to ableist design norms that exclude users from professional, academic, and social opportunities.
+
+Revisiting my own work reminded me that inclusive design is not something we “add later.” It must be intentional from the beginning.
+
+This redesign was a small but meaningful step toward aligning my technical work with principles of accessibility and disability justice.
