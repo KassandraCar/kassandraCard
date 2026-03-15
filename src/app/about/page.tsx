@@ -35,14 +35,6 @@ export default function About() {
       items: [],
     },
     {
-      title: about.work.title,
-      display: about.work.display,
-      items: about.work.experiences.map(
-        (experience: (typeof about.work.experiences)[number]) =>
-          experience.company
-      ),
-    },
-    {
       title: about.studies.title,
       display: about.studies.display,
       items: about.studies.institutions.map(
@@ -112,6 +104,22 @@ export default function About() {
                   </Tag>
                 ))}
               </Row>
+            )}
+            {about.studies.display && (
+              <Column fillWidth gap="8" paddingTop="m">
+                {about.studies.institutions.map(
+                  (institution: (typeof about.studies.institutions)[number], index: number) => (
+                    <Column key={`${institution.name}-${index}`} fillWidth gap="2">
+                      <Text id={institution.name} variant="heading-strong-s">
+                        {institution.name}
+                      </Text>
+                      <Text variant="body-default-xs" onBackground="neutral-weak">
+                        {institution.description}
+                      </Text>
+                    </Column>
+                  )
+                )}
+              </Column>
             )}
           </Column>
         )}
@@ -206,86 +214,109 @@ export default function About() {
             </Column>
           )}
 
-          {about.work.display && (
-            <>
-              <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
-                {about.work.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-              {about.work.experiences.map(
-                (experience: (typeof about.work.experiences)[number], index: number) => (
-                  <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
-                    <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
-                      <Text id={experience.company} variant="heading-strong-l">
-                        {experience.company}
-                      </Text>
-                      <Text variant="heading-default-xs" onBackground="neutral-weak">
-                        {experience.timeframe}
-                      </Text>
-                    </Row>
-                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
-                      {experience.role}
-                    </Text>
-                    <Column as="ul" gap="16">
-                      {experience.achievements.map(
-                        (achievement: React.ReactNode, index: number) => (
-                          <Text
-                            as="li"
-                            variant="body-default-m"
-                            key={`${experience.company}-${index}`}
-                          >
-                            {achievement}
-                          </Text>
-                        ),
-                      )}
-                    </Column>
-                    {experience.images && experience.images.length > 0 && (
-                      <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
-                        {experience.images.map(
-                          (image: (typeof experience.images)[number], index: number) => (
-                          <Row
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            minWidth={image.width}
-                            height={image.height}
-                          >
-                            <Media
-                              enlarge
-                              radius="m"
-                              sizes={image.width.toString()}
-                              alt={image.alt}
-                              src={image.src}
-                            />
-                          </Row>
-                        ))}
-                      </Row>
-                    )}
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
+          <Column fillWidth marginBottom="xl">
+            <Heading as="h2" variant="display-strong-s" marginBottom="m">
+              Core Values
+            </Heading>
+            <Column fillWidth gap="l">
+              {[
+                {
+                  title: "Equity",
+                  description:
+                    "I believe technology and education should expand opportunity rather than reinforce barriers. Equity means designing systems, communities, and learning environments where people with different backgrounds and needs can succeed.",
+                },
+                {
+                  title: "Curiosity",
+                  description:
+                    "Curiosity drives both my technical and leadership growth. Whether exploring neuroscience research, debugging distributed systems, or learning new technologies, I value asking questions and continuously learning.",
+                },
+                {
+                  title: "Service",
+                  description:
+                    "Leadership is not just about direction but about service to others. My work in STEM outreach and mentorship reflects my belief that knowledge should be shared and used to support communities.",
+                },
+                {
+                  title: "Integrity",
+                  description:
+                    "Integrity means taking responsibility for decisions, being transparent with collaborators, and committing to work that has meaningful impact.",
+                },
+                {
+                  title: "Collaboration",
+                  description:
+                    "Complex problems require diverse perspectives. I value building teams where people feel respected, heard, and empowered to contribute their strengths.",
+                },
+              ].map((value, index) => (
+                <Column key={index} fillWidth gap="4">
+                  <Text variant="heading-strong-l">{value.title}</Text>
+                  <Text variant="body-default-m" onBackground="neutral-weak">
+                    {value.description}
+                  </Text>
+                </Column>
+              ))}
+            </Column>
+          </Column>
 
-          {about.studies.display && (
-            <>
-              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
-                {about.studies.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-              {about.studies.institutions.map(
-                (institution: (typeof about.studies.institutions)[number], index: number) => (                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
-                      {institution.description}
-                    </Text>
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
+          <Column fillWidth marginBottom="xl">
+            <Heading as="h2" variant="display-strong-s" marginBottom="m">
+              Leadership Identities
+            </Heading>
+            <Column fillWidth gap="l">
+              {[
+                {
+                  title: "Community Builder",
+                  description:
+                    "I build environments where people feel supported and able to grow. Through leadership roles such as AVELA co-president, I work to create opportunities for students to access STEM resources and mentorship.",
+                },
+                {
+                  title: "Technical Problem Solver",
+                  description:
+                    "My computer science background shapes how I approach challenges: by analyzing systems, identifying root causes, and designing solutions that are both efficient and scalable.",
+                },
+                {
+                  title: "Inclusive Innovator",
+                  description:
+                    "I aim to design technology that works for diverse communities. My work in accessibility and inclusive design reflects my commitment to ensuring technology benefits everyone.",
+                },
+                {
+                  title: "Lifelong Learner",
+                  description:
+                    "Leadership requires continuous growth. I actively seek new knowledge across disciplines—from neuroscience research to distributed systems—to expand how I think and lead.",
+                },
+                {
+                  title: "Advocate for Opportunity",
+                  description:
+                    "As someone passionate about educational access and STEM outreach, I use leadership to advocate for opportunities that help others pursue their goals.",
+                },
+              ].map((identity, index) => (
+                <Column key={index} fillWidth gap="4">
+                  <Text variant="heading-strong-l">{identity.title}</Text>
+                  <Text variant="body-default-m" onBackground="neutral-weak">
+                    {identity.description}
+                  </Text>
+                </Column>
+              ))}
+            </Column>
+          </Column>
+
+          <Column fillWidth marginBottom="xl">
+            <Heading as="h2" variant="display-strong-s" marginBottom="m">
+              My Why
+            </Heading>
+            <Column fillWidth gap="m" textVariant="body-default-l">
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                My &ldquo;why&rdquo; is rooted in a belief that knowledge and opportunity should be accessible to everyone. Growing up, I saw how access to education, mentorship, and resources could dramatically shape the opportunities available to individuals and communities. These experiences shaped how I view leadership—not as authority, but as responsibility. Leadership, to me, means using the knowledge, skills, and positions we gain to create pathways for others.
+              </Text>
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                As I pursued my education in computer science and engaged in research and technical projects, I began to see how technology has the power to both solve complex problems and influence society at large. However, technology alone is not enough; it must be designed and implemented with intention. The systems we build, whether they are software platforms, research tools, or community programs, reflect the values of the people who create them. This realization strengthened my commitment to developing technology and initiatives that prioritize accessibility, equity, and real-world impact.
+              </Text>
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                My involvement in leadership roles and community initiatives has reinforced this purpose. Working with students and community members has shown me that mentorship and representation can change how individuals see their own potential. When people are given the tools, encouragement, and support to pursue their interests, they often exceed expectations—including their own. Being part of that process is one of the most meaningful aspects of leadership for me.
+              </Text>
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                Ultimately, my &ldquo;why&rdquo; is driven by a desire to bridge the gap between innovation and opportunity. I want to contribute to environments where technology, education, and leadership intersect to create positive and lasting change. Whether through research, engineering, or community engagement, my goal is to use my skills not only to solve problems, but also to expand access to knowledge and possibility for others.
+              </Text>
+            </Column>
+          </Column>
 
           {about.technical.display && (
             <>

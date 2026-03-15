@@ -106,9 +106,9 @@ const about: About = {
         timeframe: "Sept 2024 – Present",
         role: "Research & Development Engineer",
         achievements: [
-          <>Prototype otoacoustic emission (OAE) systems; designed for acoustic isolation and electrical integrity.</>,
-          <>Analyzed failure modes including stimulus leakage, impedance mismatch, and microphone bias routing issues.</>,
-          <>Proposed probe geometry and connector architecture improvements to increase signal fidelity.</>,
+          "Prototype otoacoustic emission (OAE) systems; designed for acoustic isolation and electrical integrity.",
+          "Analyzed failure modes including stimulus leakage, impedance mismatch, and microphone bias routing issues.",
+          "Proposed probe geometry and connector architecture improvements to increase signal fidelity.",
         ],
         images: [],
       },
@@ -117,9 +117,9 @@ const about: About = {
         timeframe: "Jun 2025 – Present",
         role: "Software Engineer",
         achievements: [
-          <>Develop XR/Unity experiences while exploring real-time human-pose integration using MediaPipe and Blender.</>,
-          <>Prototype movement-tracking workflows using Python + Unity to validate joint trajectories and pose quality.</>,
-          <>Build tooling to handle edge cases (including ground-contact poses) for more robust tracking.</>,
+          "Develop XR/Unity experiences while exploring real-time human-pose integration using MediaPipe and Blender.",
+          "Prototype movement-tracking workflows using Python + Unity to validate joint trajectories and pose quality.",
+          "Build tooling to handle edge cases (including ground-contact poses) for more robust tracking.",
         ],
         images: [],
       },
@@ -128,9 +128,9 @@ const about: About = {
         timeframe: "Jun 2025 – Aug 2025",
         role: "Embedded Systems Engineer Intern",
         achievements: [
-          <>Designed low-power circuits and supported hardware bring-up for constrained sensing/communication prototypes.</>,
-          <>Programmed microcontroller tooling in C/C++ and Python to support data collection and control experiments.</>,
-          <>Ran lab testing and debugging workflows to improve reliability and iteration speed.</>,
+          "Designed low-power circuits and supported hardware bring-up for constrained sensing/communication prototypes.",
+          "Programmed microcontroller tooling in C/C++ and Python to support data collection and control experiments.",
+          "Ran lab testing and debugging workflows to improve reliability and iteration speed.",
         ],
         images: [],
       },
@@ -143,15 +143,6 @@ const about: About = {
       {
         name: "University of Washington",
         description: <>B.S. Computer Science • Minor: Neural &amp; Computational Engineering</>,
-      },
-      {
-        name: "Coursework highlights",
-        description: (
-          <>
-            Distributed Systems (Paxos/Multi-Paxos, sharding), Systems Programming, Accessibility &amp; Inclusive Design,
-            Data Structures, Security
-          </>
-        ),
       },
     ],
   },
@@ -251,4 +242,11 @@ const gallery: Gallery = {
   ],
 };
 
-export { person, social, home, about, blog, work, gallery };
+const philosophy = {
+  path: "/philosophy",
+  label: "Philosophy",
+  title: `Leadership Philosophy – ${person.name}`,
+  description: "Kassandra Cardenas's leadership philosophy: equity-centered, relational, and grounded in responsibility to others.",
+};
+
+export { person, social, home, about, blog, work, gallery, philosophy };

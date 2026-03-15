@@ -151,7 +151,7 @@ export interface About extends BasePageConfig {
       /** Role or job title */
       role: string;
       /** Achievements at the company */
-      achievements: React.ReactNode[];
+      achievements: string[];
       /** Images related to the experience */
       images?: Array<{
         /** Image source path */
