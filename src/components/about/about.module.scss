@@ -1,19 +1,608 @@
 @use "../breakpoints.scss" as breakpoints;
 
-.hover {
-    transition: var(--transition-micro-medium);
+/* ─── Atmosphere system ───────────────────────────────────
+   The cosmic visual language is built from pure CSS, using
+   three techniques layered at very low opacity:
 
-    &:hover {
-        transform: translateX(var(--static-space-4));
-    }
+   1. conic-gradient  — spiral / swirl motif, rotated
+      off-center so it reads as a half-seen galaxy behind
+      the hero text. Heavy blur keeps it atmospheric.
+
+   2. radial-gradient — soft purple glow anchored behind
+      the name, giving it luminous backing without any
+      explicit lighting effect.
+
+   3. repeating-linear-gradient — hairline structural
+      texture used sparingly across section backgrounds.
+
+   All layers sit at opacity 0.04–0.16. They should feel
+   embedded in the darkness, not painted on top of it.
+────────────────────────────────────────────────────────── */
+
+/* ─── Page root ─────────────────────────────────────────── */
+
+.pageRoot {
+  background: #060607;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-@media (max-width: breakpoints.$s) {
-    .textAlign {
-        text-align: center;
-    }
+/* ─── Hover — preserved for TableOfContents ─────────────── */
 
-    .blockAlign {
-        align-self: center;
-    }
+.hover {
+  transition: var(--transition-micro-medium);
+
+  &:hover {
+    transform: translateX(var(--static-space-4));
+  }
+}
+
+/* ─── Hero ───────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 112px 64px 92px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*
+  heroAtmos: the two pseudo-elements compose the swirl
+  atmosphere. They are positioned within the hero overflow
+  container so they clip cleanly at the section boundary.
+
+  ::before  A conic-gradient with arms radiating from a
+            point at the upper-right quadrant. The repeating
+            sectors of color and transparency create a
+            spiral appearance once blurred. Positioned to
+            bleed off the right edge, so only the inner
+            arc of the swirl is visible over the text.
+
+  ::after   A soft radial ellipse of deep purple behind
+            the left side of the hero, warmly backing the
+            name and role text without hard edges.
+*/
+.heroAtmos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -65%;
+    right: -18%;
+    width: 95%;
+    height: 230%;
+    background: conic-gradient(
+      from 190deg at 66% 44%,
+      transparent 0deg,
+      rgba(82, 20, 148, 0.07) 26deg,
+      rgba(106, 32, 186, 0.12) 54deg,
+      transparent 82deg,
+      rgba(62, 10, 112, 0.05) 136deg,
+      rgba(90, 24, 160, 0.09) 194deg,
+      transparent 222deg,
+      rgba(76, 16, 138, 0.06) 286deg,
+      transparent 360deg
+    );
+    filter: blur(52px);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: -10%;
+    top: -15%;
+    width: 70%;
+    height: 140%;
+    background: radial-gradient(
+      ellipse at 42% 54%,
+      rgba(90, 22, 168, 0.17) 0%,
+      rgba(68, 12, 132, 0.08) 30%,
+      rgba(46, 4, 92, 0.04) 54%,
+      transparent 70%
+    );
+    filter: blur(36px);
+  }
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* ─── Avatar in hero ─────────────────────────────────────── */
+
+.avatarCol {
+  flex-shrink: 0;
+}
+
+.avatarWrap {
+  position: relative;
+  width: 128px;
+  height: 128px;
+}
+
+/*
+  The glow ring is built from stacked box-shadows rather
+  than a border so the falloff can be controlled at each
+  radius independently:
+    layer 1 — hairline colored ring (the "border")
+    layer 2 — close diffusion
+    layer 3 — mid diffusion
+    layer 4 — far ambient scatter
+*/
+.avatarGlow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow:
+    0 0 0 1.5px rgba(128, 58, 228, 0.36),
+    0 0 16px 5px rgba(108, 36, 210, 0.46),
+    0 0 40px 16px rgba(80, 10, 170, 0.22),
+    0 0 84px 34px rgba(55, 2, 126, 0.09);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.avatarImg {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+  border: 2px solid rgba(138, 66, 246, 0.26);
+}
+
+/* ─── Hero text ──────────────────────────────────────────── */
+
+.heroText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.calLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.24);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 100px;
+  padding: 6px 14px 6px 10px;
+  font-family: var(--font-label);
+  transition: border-color 0.22s ease, color 0.22s ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.calDot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(128, 66, 238, 0.7);
+  flex-shrink: 0;
+}
+
+.calArrow {
+  font-size: 0.78rem;
+  opacity: 0.5;
+}
+
+/*
+  heroName is the primary visual anchor of the entire page.
+  It should outweigh everything else by a clear margin.
+  clamp() keeps it from collapsing too small on mobile
+  while preventing it from becoming overwhelming at very
+  wide viewports.
+*/
+.heroName {
+  font-size: clamp(3rem, 5.8vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1.01;
+  letter-spacing: -0.042em;
+  color: #ffffff;
+  margin: 0;
+  font-family: var(--font-heading);
+}
+
+/*
+  heroRole deliberately sits at a much lower weight and
+  opacity than the name. It supports rather than competes.
+  Long role strings need a constrained width and comfortable
+  line-height so they don't sprawl.
+*/
+.heroRole {
+  font-size: 0.84rem;
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.32);
+  max-width: 500px;
+  margin: 0;
+  font-family: var(--font-label);
+  letter-spacing: 0.01em;
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 2px;
+}
+
+.socialLink {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.26);
+  text-decoration: none;
+  font-family: var(--font-label);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* ─── Hero divider ───────────────────────────────────────── */
+
+.heroDivider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  flex-shrink: 0;
+}
+
+/* ─── Page layout ────────────────────────────────────────── */
+
+.layout {
+  display: flex;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 76px 64px;
+  gap: 84px;
+  box-sizing: border-box;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────── */
+
+.sidebar {
+  flex-shrink: 0;
+  width: 188px;
+}
+
+.sidebarInner {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sideLocation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.28);
+  font-family: var(--font-label);
+  letter-spacing: 0.06em;
+}
+
+.sideLocationDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(128, 66, 240, 0.6);
+  flex-shrink: 0;
+}
+
+.sideLangs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sideLang {
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-family: var(--font-label);
+}
+
+.sideStudies {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sideInstitution {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sideInstName {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-body);
+}
+
+.sideInstDesc {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.24);
+  font-family: var(--font-label);
+  line-height: 1.58;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Content column ─────────────────────────────────────── */
+
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionBlock {
+  padding: 54px 0;
+}
+
+.sectionDivider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+/*
+  Section headings are intentionally subordinate: small,
+  uppercase, and colored with muted purple rather than
+  white. They orient the reader without competing with
+  the value/skill titles below them.
+*/
+.sectionHeading {
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(140, 70, 248, 0.55);
+  font-family: var(--font-label);
+  margin: 0 0 30px;
+  font-weight: 500;
+}
+
+/* ─── Intro ──────────────────────────────────────────────── */
+
+.introText {
+  font-size: 0.97rem;
+  color: rgba(255, 255, 255, 0.52);
+  line-height: 1.92;
+  font-family: var(--font-body);
+}
+
+/* ─── Values and identities ──────────────────────────────── */
+
+.valueGrid {
+  display: flex;
+  flex-direction: column;
+}
+
+.valueItem {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  &:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+.valueTitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.74);
+  font-family: var(--font-body);
+  letter-spacing: -0.01em;
+}
+
+.valueDesc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.34);
+  line-height: 1.78;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* ─── Prose blocks ───────────────────────────────────────── */
+
+.proseBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  p {
+    font-size: 0.93rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.9;
+    margin: 0;
+    font-family: var(--font-body);
+  }
+}
+
+/* ─── Technical skills ───────────────────────────────────── */
+
+.skillList {
+  display: flex;
+  flex-direction: column;
+}
+
+.skillItem {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  &:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+.skillTitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.74);
+  font-family: var(--font-body);
+  letter-spacing: -0.01em;
+}
+
+.skillDesc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.34);
+  line-height: 1.78;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.skillTag {
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 3px 9px;
+  font-family: var(--font-label);
+}
+
+/* ─── Bottom padding ─────────────────────────────────────── */
+
+.pagePad {
+  height: 120px;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 920px) {
+  .hero {
+    padding: 80px 40px 68px;
+  }
+
+  .layout {
+    padding: 60px 40px;
+    gap: 56px;
+  }
+}
+
+@media (max-width: 720px) {
+  .heroInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .avatarWrap {
+    width: 92px;
+    height: 92px;
+  }
+
+  .avatarImg {
+    width: 92px;
+    height: 92px;
+  }
+
+  .layout {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .sidebarInner {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .sideStudies {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding: 64px 24px 56px;
+  }
+
+  .heroName {
+    font-size: 2.7rem;
+  }
+
+  .layout {
+    padding: 44px 24px;
+  }
+
+  .sectionBlock {
+    padding: 42px 0;
+  }
+}
+
+/* ─── Preserved responsive alignment ─────────────────────── */
+
+@media (max-width: breakpoints.$s) {
+  .textAlign {
+    text-align: center;
+  }
+
+  .blockAlign {
+    align-self: center;
+  }
 }

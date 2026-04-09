@@ -20,7 +20,8 @@
   width: 100%;
   min-height: 700px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .heroBg {
@@ -30,30 +31,26 @@
 }
 
 /*
-  Two-layer overlay:
-  1. Left-to-right: strong dark on left so text is readable,
-     fades to transparent on the right where the brain sits.
-  2. Bottom-to-top: deep black at footer of hero, fades up.
-  Together they create a cinematic "window onto a specimen" effect.
+  With content centered, the overlay shifts to a radial
+  darkening at the center plus a solid bottom. This keeps
+  the brain image visible at the edges while text in the
+  middle stays readable.
 */
 .heroOverlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(
-      to right,
-      rgba(7, 7, 7, 0.97) 0%,
-      rgba(7, 7, 7, 0.82) 38%,
-      rgba(7, 7, 7, 0.42) 60%,
-      rgba(7, 7, 7, 0.12) 80%,
-      transparent 100%
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(7, 7, 7, 0.62) 0%,
+      rgba(7, 7, 7, 0.78) 50%,
+      rgba(7, 7, 7, 0.88) 100%
     ),
     linear-gradient(
       to top,
       rgba(7, 7, 7, 1) 0%,
-      rgba(7, 7, 7, 0.65) 22%,
-      rgba(7, 7, 7, 0.1) 45%,
-      transparent 62%
+      rgba(7, 7, 7, 0.6) 18%,
+      transparent 42%
     );
   z-index: 1;
 }
@@ -67,6 +64,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
+  text-align: center;
 }
 
 .overline {
@@ -92,7 +91,7 @@
   font-size: 0.94rem;
   line-height: 1.82;
   color: rgba(255, 255, 255, 0.42);
-  max-width: 460px;
+  max-width: 520px;
   margin: 0;
   font-family: var(--font-body);
 }
@@ -100,9 +99,11 @@
 .profileRow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   margin-top: 8px;
   padding-top: 24px;
+  width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
