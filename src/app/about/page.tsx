@@ -132,29 +132,36 @@ export default function About() {
             marginBottom="32"
           >
             {about.calendar.display && (
-              <Row
-                fitWidth
-                border="brand-alpha-medium"
-                background="brand-alpha-weak"
-                radius="full"
-                padding="4"
-                gap="8"
-                marginBottom="m"
-                vertical="center"
-                className={styles.blockAlign}
-                style={{
-                  backdropFilter: "blur(var(--static-space-1))",
-                }}
+              <a
+                href={about.calendar.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Row paddingX="8">Schedule a call</Row>
-                <IconButton
-                  href={about.calendar.link}
-                  data-border="rounded"
-                  variant="secondary"
-                  icon="chevronRight"
-                />
-              </Row>
+                <Row
+                  fitWidth
+                  border="brand-alpha-medium"
+                  background="brand-alpha-weak"
+                  radius="full"
+                  padding="4"
+                  gap="8"
+                  marginBottom="m"
+                  vertical="center"
+                  className={styles.blockAlign}
+                  style={{
+                    backdropFilter: "blur(var(--static-space-1))",
+                    cursor: "pointer",
+                  }}
+                >
+                  <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
+                  <Row paddingX="8">Schedule a call</Row>
+                  <IconButton
+                    data-border="rounded"
+                    variant="secondary"
+                    icon="chevronRight"
+                  />
+                </Row>
+              </a>
             )}
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}
@@ -280,7 +287,7 @@ export default function About() {
                 {
                   title: "Lifelong Learner",
                   description:
-                    "Leadership requires continuous growth. I actively seek new knowledge across disciplines—from neuroscience research to distributed systems—to expand how I think and lead.",
+                    "Leadership requires continuous growth. I actively seek new knowledge across disciplines from neuroscience research to distributed systems—to expand how I think and lead.",
                 },
                 {
                   title: "Advocate for Opportunity",
@@ -314,6 +321,23 @@ export default function About() {
               </Text>
               <Text variant="body-default-l" onBackground="neutral-weak">
                 Ultimately, my &ldquo;why&rdquo; is driven by a desire to bridge the gap between innovation and opportunity. I want to contribute to environments where technology, education, and leadership intersect to create positive and lasting change. Whether through research, engineering, or community engagement, my goal is to use my skills not only to solve problems, but also to expand access to knowledge and possibility for others.
+              </Text>
+            </Column>
+          </Column>
+
+          <Column fillWidth marginBottom="xl">
+            <Heading as="h2" variant="display-strong-s" marginBottom="m">
+              Future Plans for Leadership
+            </Heading>
+            <Column fillWidth gap="m" textVariant="body-default-l">
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                In the near term, I plan to deepen my technical expertise while continuing to build on the leadership foundations I have developed through AVELA, Partners for World Health, WashPIRG, and my research work. My long-term goal is to work at the intersection of engineering and public health or education, where I can use technical skills to design systems that address access gaps in meaningful, structural ways.
+              </Text>
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                The experiences I have had as a student leader have taught me that impact requires more than passion. It requires strategy, communication, and a deep understanding of the people and systems you are working within. Moving forward, I plan to carry those lessons into technical and organizational leadership roles by focusing on building clear structures, creating transparent pathways, and prioritizing the voices of people most affected by the systems I help build.
+              </Text>
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                I also intend to pursue graduate research or industry roles that allow me to contribute to biomedical technology or computational systems with public benefit. Whether that looks like building tools for clinical care, designing more equitable platforms, or mentoring the next generation of STEM students, leadership will remain central to how I work. Advancing in a career is not separate from community responsibility. The two are connected, and I plan to keep them that way.
               </Text>
             </Column>
           </Column>

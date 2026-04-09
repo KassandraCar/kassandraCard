@@ -78,7 +78,7 @@ const about: About = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "https://cal.com/kassandra-cardenas-vj6duf",
   },
   intro: {
     display: true,

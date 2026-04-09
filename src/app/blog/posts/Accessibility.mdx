@@ -5,103 +5,122 @@ publishedAt: "2026-02-16"
 tag: "Accessibility"
 ---
 
-## Why I decided to revisit my portfolio
+## Overview
 
-My personal website is more than just a collection of projects — it’s a representation of who I am as a computer scientist. It showcases my work in distributed systems, embedded systems, accessibility, and community leadership.  
-
-But after taking a closer look at it through an accessibility lens, I realized something important: I had unintentionally designed it with assumptions about who my audience was.
-
-Like many developers, I had optimized for aesthetics and performance. I hadn’t fully considered how someone using a screen reader, keyboard-only navigation, or high-contrast settings would experience it.
-
-This redesign was an opportunity to correct that.
+This post documents my process of auditing and redesigning my personal portfolio website through an accessibility lens. It covers what I found during testing, what I changed, and what I learned about inclusive design. While this project began as a self-directed improvement effort, it became a meaningful exercise in aligning my technical work with the values I hold around equity and access.
 
 ---
 
-## What I tested
+## Context
 
-To evaluate my site, I used:
+My personal website is more than a collection of projects. It is a representation of who I am as a computer scientist and a leader. It showcases my work across distributed systems, embedded systems, accessibility, and community organizing. But after examining the site through an accessibility lens, I realized I had unintentionally designed it with assumptions about who my audience was.
 
-- Keyboard-only navigation (tab + shift+tab)
-- VoiceOver (macOS screen reader)
+Like many developers, I had optimized for aesthetics and performance. I had not fully considered how someone using a screen reader, keyboard-only navigation, or high-contrast settings would experience the site. This redesign was an opportunity to correct that and to make my portfolio genuinely accessible rather than just visually polished.
+
+---
+
+## My Role
+
+This was a self-directed project. I was solely responsible for auditing the existing site, identifying accessibility issues, researching WCAG guidelines and best practices, implementing fixes, and verifying improvements through re-testing.
+
+The work required me to step outside the role of the developer who built the site and into the role of a user who experiences it differently than I do. That shift in perspective was itself a significant part of the learning.
+
+---
+
+## What I Tested
+
+To evaluate the site, I used the following tools and methods:
+
+- Keyboard-only navigation using Tab and Shift+Tab
+- VoiceOver, the macOS built-in screen reader
 - Chrome Lighthouse Accessibility Audit
 
-I focused on the following tasks:
+I focused on the following tasks during testing:
 
-1. Navigating the homepage using only the keyboard  
-2. Reading blog content using a screen reader  
-3. Accessing project links and external navigation  
-
----
-
-## Problems I discovered
-
-### 1. Missing or weak alt text (Perceivable)
-
-Some images relied on generic or auto-generated alt text. While the site looked visually polished, the descriptive experience for screen reader users was incomplete.
-
-For example, project thumbnails and avatar images did not meaningfully describe their purpose.
+1. Navigating the homepage using only the keyboard
+2. Reading blog content using a screen reader
+3. Accessing project links and external navigation
 
 ---
 
-### 2. Inconsistent heading structure (Understandable)
+## Problems I Discovered
 
-Certain pages skipped heading levels or relied heavily on styled text components rather than semantic heading tags.  
+### Missing or Weak Alt Text (Perceivable)
 
-This made it harder for screen reader users to navigate by heading structure.
+Some images relied on generic or auto-generated alt text. While the site looked visually polished, the descriptive experience for screen reader users was incomplete. Project thumbnails and avatar images did not meaningfully describe their purpose or context.
 
----
+### Inconsistent Heading Structure (Understandable)
 
-### 3. Limited visible focus indicators (Operable)
+Certain pages skipped heading levels or relied heavily on styled text components rather than semantic heading tags. This made it harder for screen reader users to navigate by heading structure, which is one of the primary ways assistive technology users move through a page.
 
-While keyboard navigation technically worked, focus states were subtle and easy to miss.  
+### Limited Visible Focus Indicators (Operable)
 
-This creates friction for users who rely on visual focus cues to understand where they are on the page.
-
----
-
-## What I changed
-
-### Improved alt text
-
-I added meaningful alt text to:
-- Profile image
-- Project thumbnails
-- Blog images
-
-Instead of generic labels, I now describe the purpose of the image in context.
+While keyboard navigation technically worked, focus states were subtle and easy to miss. This creates friction for users who rely on visual focus cues to understand where they are on the page.
 
 ---
 
-### Fixed heading hierarchy
+## What I Changed
 
-I reviewed heading usage across pages to ensure:
+### Improved Alt Text
 
-- One clear `<h1>` per page  
-- Logical progression (`h2 → h3 → h4`)  
-- No skipped structural levels  
+I added meaningful alt text to profile images, project thumbnails, and blog images. Instead of generic labels, I now describe the purpose of each image in context, so screen reader users receive the same information as sighted users.
 
-This improves both usability and SEO.
+### Fixed Heading Hierarchy
+
+I reviewed heading usage across all pages to ensure one clear `<h1>` per page, logical progression from `h2` to `h3` to `h4`, and no skipped structural levels. This improves both accessibility and SEO.
+
+### Strengthened Focus Visibility
+
+I adjusted focus styles to ensure clear visual indicators, sufficient contrast, and consistent focus behavior across all interactive elements. This significantly improved keyboard navigation clarity for users who rely on visual focus cues.
 
 ---
 
-### Strengthened focus visibility
+## Skills Developed
 
-I adjusted focus styles to ensure:
+- Accessibility auditing using Lighthouse and VoiceOver
+- Applying WCAG 2.1 guidelines to a real project
+- Semantic HTML structure and heading hierarchy
+- Evaluating user experience from multiple perspectives
+- Translating values around inclusion into concrete technical decisions
 
-- Clear visual indicators  
-- Sufficient contrast  
-- Consistent focus behavior across interactive elements  
+---
 
-This significantly improved keyboard navigation clarity.
+## Impact
+
+After implementing changes, the site's Lighthouse accessibility score improved. More importantly, the experience for keyboard and screen reader users became meaningfully better. Links are now clearly labeled, headings are navigable and logical, and focus indicators are visible throughout.
+
+This project also set a standard for how I will approach new development work. Accessibility is now a consideration from the beginning of a project rather than something I revisit after the fact.
 
 ---
 
 ## Reflection
 
-Accessibility is not a feature — it is a baseline expectation.  
+Accessibility is not a feature to be added at the end. It is a baseline expectation. By overlooking it in my initial portfolio design, I unintentionally reinforced the assumption that my audience would be non-disabled. In technology spaces, that assumption contributes to design norms that exclude users from professional, academic, and social opportunities.
 
-By overlooking accessibility in my initial portfolio design, I unintentionally reinforced the assumption that my audience would be non-disabled. In technology spaces, that assumption contributes to ableist design norms that exclude users from professional, academic, and social opportunities.
+Revisiting my own work reminded me that inclusive design is not something you "add later." It must be intentional from the beginning. This redesign was a small but meaningful step toward aligning my technical work with the principles of accessibility and disability justice that I care about.
 
-Revisiting my own work reminded me that inclusive design is not something we “add later.” It must be intentional from the beginning.
+---
 
-This redesign was a small but meaningful step toward aligning my technical work with principles of accessibility and disability justice.
+## Competency Reflections
+
+### Learning and Reasoning
+
+Learning and Reasoning refers to the ability to acquire new knowledge, evaluate information critically, and apply it to new situations. Redesigning my portfolio with accessibility in mind required me to learn frameworks and testing methods I had not previously used in a systematic way. I studied WCAG guidelines, ran screen reader testing with VoiceOver, and used Chrome Lighthouse audits to identify gaps I could not see through visual review alone.
+
+The reasoning piece was equally important. I had to analyze what I found, understand why each issue created barriers for users, and decide which changes would have the most meaningful impact given limited time. I learned that good accessibility practice requires both technical knowledge and empathy. You have to understand not just the rule but the reason behind it. In future development work, I will build accessibility evaluation into the beginning of projects rather than treating it as a final check, and I will continue learning about assistive technologies and inclusive design principles.
+
+---
+
+### Personal Behavior
+
+Personal Behavior, as a leadership competency, refers to the alignment between one's stated values and one's actual practices. One of the clearest lessons from this project was the gap that can exist between believing in inclusion and actually building for it. I had publicly expressed values around equity and access, yet my own website had barriers that would prevent certain users from experiencing it fully.
+
+Recognizing that gap, rather than rationalizing it, was an exercise in personal accountability. I learned that values only have meaning when they show up in the specifics of what you build, not just in what you say. Going forward, I plan to apply this by conducting regular accessibility reviews on any digital product I contribute to, and by advocating for accessibility standards in team environments where they might otherwise be deprioritized.
+
+---
+
+### Self-Awareness and Development
+
+Self-Awareness and Development refers to the ongoing process of examining your own assumptions, identifying growth areas, and taking deliberate steps to improve. This project was a direct confrontation with an assumption I did not realize I held: that my portfolio's audience would navigate the web the same way I do.
+
+Running the audit revealed that I had been designing primarily for my own experience. That realization was uncomfortable, and it was useful. It pushed me to actively seek out perspectives that differ from my own before building, rather than after. In the future, I will carry this lesson into engineering and design work by asking early and often whose experience I am and am not accounting for, and treating that question as a standard part of my process.

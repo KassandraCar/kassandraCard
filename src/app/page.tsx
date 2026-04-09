@@ -1,19 +1,7 @@
-import {
-  Heading,
-  Text,
-  Button,
-  Avatar,
-  RevealFx,
-  Column,
-  Badge,
-  Row,
-  Schema,
-  Meta,
-  Line,
-} from "@once-ui-system/core";
-import { home, about, person, baseURL, routes } from "@/resources";
-import { Projects } from "@/components/work/Projects";
-import { Posts } from "@/components/blog/Posts";
+import { Schema, Meta } from "@once-ui-system/core";
+import { baseURL, home, about, person } from "@/resources";
+import { getPosts } from "@/utils/utils";
+import styles from "./home.module.scss";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -26,8 +14,22 @@ export async function generateMetadata() {
 }
 
 export default function Home() {
+  const projects = getPosts(["src", "app", "work", "projects"]).sort(
+    (a, b) =>
+      new Date(b.metadata.publishedAt).getTime() -
+      new Date(a.metadata.publishedAt).getTime()
+  );
+
+  const posts = getPosts(["src", "app", "blog", "posts"])
+    .sort(
+      (a, b) =>
+        new Date(b.metadata.publishedAt).getTime() -
+        new Date(a.metadata.publishedAt).getTime()
+    )
+    .slice(0, 3);
+
   return (
-    <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
+    <div className={styles.page}>
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -41,88 +43,112 @@ export default function Home() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Column fillWidth horizontal="center" gap="m">
-        <Column maxWidth="s" horizontal="center" align="center">
-          {home.featured.display && (
-            <RevealFx
-              fillWidth
-              horizontal="center"
-              paddingTop="16"
-              paddingBottom="32"
-              paddingLeft="12"
+
+      {/* Hero */}
+      <section className={styles.hero}>
+        <div className={styles.heroBg}>
+          <img
+            className={styles.brainImg}
+            src="/images/gallery/brain.jpg"
+            alt=""
+            aria-hidden="true"
+          />
+        </div>
+        <div className={styles.heroOverlay} />
+
+        <div className={styles.heroContent}>
+          <p className={styles.overline}>
+            Computer Science · Neural Engineering · Systems Design
+          </p>
+          <h1 className={styles.headline}>Hi, I'm Kass.</h1>
+          <p className={styles.subline}>
+            I build across distributed systems, embedded biomedical research,
+            and community-centered engineering. Currently at UW, exploring
+            computation at the scale of neurons and servers.
+          </p>
+          <div className={styles.profileRow}>
+            <div className={styles.profileWrap}>
+              <div className={styles.profileGlow} />
+              <img
+                className={styles.profileImg}
+                src={person.avatar}
+                alt={person.name}
+              />
+            </div>
+            <div className={styles.profileInfo}>
+              <span className={styles.profileName}>{person.name}</span>
+              <span className={styles.location}>Seattle, WA</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className={styles.divider} />
+
+      {/* Work */}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionLabel}>Selected Work</span>
+          <a className={styles.sectionLink} href="/work">
+            View all
+          </a>
+        </div>
+        <div className={styles.workList}>
+          {projects.map((p) => (
+            <a
+              key={p.slug}
+              className={styles.workRow}
+              href={`/work/${p.slug}`}
             >
-              <Badge
-                background="brand-alpha-weak"
-                paddingX="12"
-                paddingY="4"
-                onBackground="neutral-strong"
-                textVariant="label-default-s"
-                arrow={false}
-                href={home.featured.href}
-              >
-                <Row paddingY="2">{home.featured.title}</Row>
-              </Badge>
-            </RevealFx>
-          )}
-          <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
-            <Heading wrap="balance" variant="display-strong-l">
-              {home.headline}
-            </Heading>
-          </RevealFx>
-          <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center" paddingBottom="32">
-            <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
-              {home.subline}
-            </Text>
-          </RevealFx>
-          <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
-            <Button
-              id="about"
-              data-border="rounded"
-              href={about.path}
-              variant="secondary"
-              size="m"
-              weight="default"
-              arrowIcon
-            >
-              <Row gap="8" vertical="center" paddingRight="4">
-                {about.avatar.display && (
-                  <Avatar
-                    marginRight="8"
-                    style={{ marginLeft: "-0.75rem" }}
-                    src={person.avatar}
-                    size="m"
-                  />
+              <div className={styles.workRowLeft}>
+                <span className={styles.workTitle}>{p.metadata.title}</span>
+                {p.metadata.tag && (
+                  <span className={styles.workTag}>{p.metadata.tag}</span>
                 )}
-                {about.title}
-              </Row>
-            </Button>
-          </RevealFx>
-        </Column>
-      </Column>
-      <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
-      </RevealFx>
-      {routes["/blog"] && (
-        <Column fillWidth gap="24" marginBottom="l">
-          <Row fillWidth paddingRight="64">
-            <Line maxWidth={48} />
-          </Row>
-          <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
-            <Row flex={1} paddingLeft="l" paddingTop="24">
-              <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                Latest from the blog
-              </Heading>
-            </Row>
-            <Row flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
-            </Row>
-          </Row>
-          <Row fillWidth paddingLeft="64" horizontal="end">
-            <Line maxWidth={48} />
-          </Row>
-        </Column>
-      )}
-      <Projects range={[2]} />
-    </Column>
+              </div>
+              <span className={styles.workArrow}>&#8594;</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <div className={styles.divider} />
+
+      {/* Blog */}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionLabel}>Latest Writing</span>
+          <a className={styles.sectionLink} href="/blog">
+            View all
+          </a>
+        </div>
+        <div className={styles.blogGrid}>
+          {posts.map((p) => (
+            <a
+              key={p.slug}
+              className={styles.blogCard}
+              href={`/blog/${p.slug}`}
+            >
+              <div className={styles.blogCardImage}>
+                {p.metadata.image ? (
+                  <img src={p.metadata.image} alt={p.metadata.title} />
+                ) : (
+                  <div className={styles.blogCardImagePlaceholder} />
+                )}
+              </div>
+              <div className={styles.blogCardBody}>
+                {p.metadata.tag && (
+                  <span className={styles.blogTag}>{p.metadata.tag}</span>
+                )}
+                <span className={styles.blogTitle}>{p.metadata.title}</span>
+                <p className={styles.blogSummary}>{p.metadata.summary}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <div className={styles.pagePad} />
+    </div>
   );
 }
