@@ -1,5 +1,6 @@
 import { Column, Heading, Media, Meta, Row, Schema, Text } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
+import styles from "./work.module.scss";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -30,6 +31,7 @@ export default function Work() {
       <Heading marginBottom="l" variant="heading-strong-xl" align="center">
         {work.title}
       </Heading>
+
       {about.work.display && (
         <>
           <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
@@ -38,7 +40,11 @@ export default function Work() {
           <Column fillWidth gap="l" marginBottom="40">
             {about.work.experiences.map(
               (experience: (typeof about.work.experiences)[number], index: number) => (
-                <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
+                <Column
+                  key={`${experience.company}-${experience.role}-${index}`}
+                  fillWidth
+                  className={styles.experienceItem}
+                >
                   <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
                     <Text id={experience.company} variant="heading-strong-l">
                       {experience.company}
@@ -47,21 +53,24 @@ export default function Work() {
                       {experience.timeframe}
                     </Text>
                   </Row>
-                  <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
+                  <Text
+                    variant="body-default-s"
+                    onBackground="brand-weak"
+                    marginBottom="m"
+                    className={styles.roleText}
+                  >
                     {experience.role}
                   </Text>
                   <Column as="ul" gap="16">
-                    {experience.achievements.map(
-                      (achievement: string, index: number) => (
-                        <Text
-                          as="li"
-                          variant="body-default-m"
-                          key={`${experience.company}-${index}`}
-                        >
-                          {achievement}
-                        </Text>
-                      ),
-                    )}
+                    {experience.achievements.map((achievement: string, index: number) => (
+                      <Text
+                        as="li"
+                        variant="body-default-m"
+                        key={`${experience.company}-${index}`}
+                      >
+                        {achievement}
+                      </Text>
+                    ))}
                   </Column>
                   {experience.images && experience.images.length > 0 && (
                     <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
@@ -82,15 +91,20 @@ export default function Work() {
                               src={image.src}
                             />
                           </Row>
-                        ))}
+                        )
+                      )}
                     </Row>
                   )}
                 </Column>
-              ))}
+              )
+            )}
           </Column>
         </>
       )}
-      <Column fillWidth marginTop="40" marginBottom="xl" paddingX="l">
+
+      <div className={styles.sectionDivider} />
+
+      <Column fillWidth marginBottom="xl" paddingX="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Relevant Courses
         </Heading>
@@ -98,31 +112,39 @@ export default function Work() {
           {[
             {
               title: "Distributed Systems",
-              description: "Paxos/Multi-Paxos consensus, primary-backup replication, leader election, sharding, and linearizability guarantees in distributed key-value stores.",
+              description:
+                "Paxos/Multi-Paxos consensus, primary-backup replication, leader election, sharding, and linearizability guarantees in distributed key-value stores.",
             },
             {
               title: "Systems Programming",
-              description: "Low-level C/C++ development, memory management, concurrency, and OS-level abstractions.",
+              description:
+                "Low-level C/C++ development, memory management, concurrency, and OS-level abstractions.",
             },
             {
               title: "Accessibility & Inclusive Design",
-              description: "WCAG standards, semantic HTML, keyboard navigation, focus management, contrast audits, and designing for diverse user needs.",
+              description:
+                "WCAG standards, semantic HTML, keyboard navigation, focus management, contrast audits, and designing for diverse user needs.",
             },
             {
               title: "Data Structures & Algorithms",
-              description: "Algorithm analysis, trees, graphs, hashing, dynamic programming, and complexity tradeoffs.",
+              description:
+                "Algorithm analysis, trees, graphs, hashing, dynamic programming, and complexity tradeoffs.",
             },
             {
               title: "Computer Security",
-              description: "Threat modeling, cryptography fundamentals, authentication, network security, and secure coding practices.",
+              description:
+                "Threat modeling, cryptography fundamentals, authentication, network security, and secure coding practices.",
             },
             {
               title: "Neural & Computational Engineering",
-              description: "Signal processing, neural data analysis, brain-computer interfaces, and computational models of biological systems.",
+              description:
+                "Signal processing, neural data analysis, brain-computer interfaces, and computational models of biological systems.",
             },
           ].map((course, index) => (
-            <Column key={index} fillWidth gap="4">
-              <Text variant="heading-strong-l">{course.title}</Text>
+            <Column key={index} fillWidth gap="4" className={styles.courseItem}>
+              <Text variant="heading-strong-l" className={styles.courseTitle}>
+                {course.title}
+              </Text>
               <Text variant="body-default-m" onBackground="neutral-weak">
                 {course.description}
               </Text>

@@ -57,16 +57,7 @@ export default function Home() {
         <div className={styles.heroOverlay} />
 
         <div className={styles.heroContent}>
-          <p className={styles.overline}>
-            Computer Science · Neural Engineering · Systems Design
-          </p>
-          <h1 className={styles.headline}>Hi, I'm Kass.</h1>
-          <p className={styles.subline}>
-            I build across distributed systems, embedded biomedical research,
-            and community-centered engineering. Currently at UW, exploring
-            computation at the scale of neurons and servers.
-          </p>
-          <div className={styles.profileRow}>
+          <div className={styles.heroAvatarSide}>
             <div className={styles.profileWrap}>
               <div className={styles.profileGlow} />
               <img
@@ -75,8 +66,20 @@ export default function Home() {
                 alt={person.name}
               />
             </div>
-            <div className={styles.profileInfo}>
+          </div>
+          <div className={styles.heroTextSide}>
+            <p className={styles.overline}>
+              Computer Science · Neural Engineering · Systems Design
+            </p>
+            <h1 className={styles.headline}>Hi, I'm Kass.</h1>
+            <p className={styles.subline}>
+              I build across distributed systems, embedded biomedical research,
+              and community-centered engineering. Currently at UW, exploring
+              computation at the scale of neurons and servers.
+            </p>
+            <div className={styles.profileRow}>
               <span className={styles.profileName}>{person.name}</span>
+              <span className={styles.profileSep} aria-hidden="true" />
               <span className={styles.location}>Seattle, WA</span>
             </div>
           </div>

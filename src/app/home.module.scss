@@ -60,12 +60,23 @@
   z-index: 2;
   padding: 60px 64px;
   width: 100%;
-  max-width: 680px;
+  max-width: 860px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 52px;
+}
+
+.heroAvatarSide {
+  flex-shrink: 0;
+}
+
+.heroTextSide {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center;
-  text-align: center;
+  flex: 1;
+  min-width: 0;
 }
 
 .overline {
@@ -99,19 +110,25 @@
 .profileRow {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 8px;
-  padding-top: 24px;
-  width: 100%;
+  gap: 10px;
+  margin-top: 4px;
+  padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.profileSep {
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  flex-shrink: 0;
 }
 
 .profileWrap {
   position: relative;
   flex-shrink: 0;
-  width: 52px;
-  height: 52px;
+  width: 116px;
+  height: 116px;
 }
 
 /*
@@ -134,8 +151,8 @@
 }
 
 .profileImg {
-  width: 52px;
-  height: 52px;
+  width: 116px;
+  height: 116px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
@@ -417,6 +434,7 @@
   .heroContent {
     padding: 44px 40px;
     max-width: 100%;
+    gap: 36px;
   }
 
   .section {
@@ -424,7 +442,17 @@
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 680px) {
+  .heroContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profileRow {
+    justify-content: center;
+  }
+
   .blogGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -443,7 +471,17 @@
 
   .heroContent {
     padding: 36px 24px;
-    gap: 16px;
+    gap: 28px;
+  }
+
+  .profileWrap {
+    width: 92px;
+    height: 92px;
+  }
+
+  .profileImg {
+    width: 92px;
+    height: 92px;
   }
 
   .headline {
