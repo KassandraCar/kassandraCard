@@ -57,6 +57,15 @@ export default function Home() {
         <div className={styles.heroOverlay} />
 
         <div className={styles.heroContent}>
+          <div className={styles.portraitWrap}>
+            <div className={styles.portraitGlow} />
+            <img
+              className={styles.portraitImg}
+              src={person.avatar}
+              alt={person.name}
+            />
+            <div className={styles.portraitTint} aria-hidden="true" />
+          </div>
           <div className={styles.heroTextSide}>
             <p className={styles.overline}>
               Computer Science · Neural Engineering · Systems Design
