@@ -28,6 +28,8 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Blend here, not on the img: this box is its own stacking context */
+  mix-blend-mode: screen;
 }
 
 /*
@@ -42,9 +44,9 @@
   background:
     radial-gradient(
       ellipse at 50% 50%,
-      rgba(0, 0, 255, 0.62) 0%,
-      rgba(0, 0, 255, 0.78) 50%,
-      rgba(0, 0, 255, 0.88) 100%
+      rgba(0, 0, 255, 0.45) 0%,
+      rgba(0, 0, 255, 0.3) 50%,
+      rgba(0, 0, 255, 0.15) 100%
     ),
     linear-gradient(
       to top,
@@ -197,9 +199,14 @@
   height: 100%;
   object-fit: cover;
   object-position: 68% center;
-  opacity: 0.48;
+  opacity: 0.7;
   display: block;
-  mix-blend-mode: luminosity;
+  /*
+    Grayscale + screen blend drops the image's black areas out
+    entirely, so only the brain's bright structures remain and
+    read as a translucent light-blue glow over the blue page.
+  */
+  filter: grayscale(1) contrast(1.5);
 }
 
 /* ─── Divider ────────────────────────────────────────────── */
