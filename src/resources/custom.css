@@ -1,3 +1,25 @@
+/* Site-wide blue background (both light and dark themes) */
+:root,
+[data-theme="light"],
+[data-theme="dark"] {
+  --page-background: #0000FF;
+}
+
+html,
+body {
+  background: #0000FF !important;
+}
+
+/* White border framing the entire webpage */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  border: 8px solid #FFFFFF;
+  pointer-events: none;
+  z-index: 9999;
+}
+
 /* :root {
   /*
   /* Override default variables here */
