@@ -30,6 +30,9 @@
   z-index: 0;
   /* Blend here, not on the img: this box is its own stacking context */
   mix-blend-mode: screen;
+  /* Fade the image in at the top and out at the bottom so it has no hard edge */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
 }
 
 /*
