@@ -22,7 +22,7 @@
 /* ─── Page root ─────────────────────────────────────────── */
 
 .pageRoot {
-  background: #060607;
+  background: #0000FF;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -148,14 +148,18 @@
   border-radius: 50%;
   background: transparent;
   box-shadow:
-    0 0 0 1.5px rgba(128, 58, 228, 0.36),
-    0 0 16px 5px rgba(108, 36, 210, 0.46),
-    0 0 40px 16px rgba(80, 10, 170, 0.22),
-    0 0 84px 34px rgba(55, 2, 126, 0.09);
+    0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 0 18px 4px rgba(170, 200, 255, 0.35),
+    0 0 48px 16px rgba(170, 200, 255, 0.12);
   z-index: 0;
   pointer-events: none;
 }
 
+/*
+  X-ray portrait: matches the homepage brain. The #xray-blue
+  SVG filter (defined in about/page.tsx) maps darks to the page
+  blue and lights to white, so the photo reads as a scan.
+*/
 .avatarImg {
   width: 128px;
   height: 128px;
@@ -164,7 +168,8 @@
   display: block;
   position: relative;
   z-index: 1;
-  border: 2px solid rgba(138, 66, 246, 0.26);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  filter: contrast(1.25) url(#xray-blue);
 }
 
 /* ─── Hero text ──────────────────────────────────────────── */

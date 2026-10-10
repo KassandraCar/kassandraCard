@@ -63,6 +63,19 @@ export default function About() {
           {about.avatar.display && (
             <div className={styles.avatarCol}>
               <div className={styles.avatarWrap}>
+                {/*
+                  X-ray tone map: grayscale into red/green, blue held at
+                  full. Black becomes the page blue (#0000FF), highlights
+                  become white, mid-tones land on light blue.
+                */}
+                <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute" }}>
+                  <filter id="xray-blue" colorInterpolationFilters="sRGB">
+                    <feColorMatrix
+                      type="matrix"
+                      values="0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 0 1  0 0 0 1 0"
+                    />
+                  </filter>
+                </svg>
                 <div className={styles.avatarGlow} />
                 <img
                   className={styles.avatarImg}
