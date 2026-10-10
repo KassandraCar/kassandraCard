@@ -57,16 +57,6 @@ export default function Home() {
         <div className={styles.heroOverlay} />
 
         <div className={styles.heroContent}>
-          <div className={styles.heroAvatarSide}>
-            <div className={styles.profileWrap}>
-              <div className={styles.profileGlow} />
-              <img
-                className={styles.profileImg}
-                src={person.avatar}
-                alt={person.name}
-              />
-            </div>
-          </div>
           <div className={styles.heroTextSide}>
             <p className={styles.overline}>
               Computer Science · Neural Engineering · Systems Design
