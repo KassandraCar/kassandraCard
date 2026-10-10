@@ -131,6 +131,7 @@
   position: relative;
   width: 128px;
   height: 128px;
+  isolation: isolate;
 }
 
 /*
@@ -156,9 +157,10 @@
 }
 
 /*
-  X-ray portrait: matches the homepage brain. The #xray-blue
-  SVG filter (defined in about/page.tsx) maps darks to the page
-  blue and lights to white, so the photo reads as a scan.
+  X-ray portrait: matches the homepage brain. The photo is
+  grayscaled, then .avatarTint lays solid page blue over it with
+  `lighten`: each pixel becomes (gray, gray, 255), so darks turn
+  into the page blue and lights into white.
 */
 .avatarImg {
   width: 128px;
@@ -169,7 +171,17 @@
   position: relative;
   z-index: 1;
   border: 1.5px solid rgba(255, 255, 255, 0.85);
-  filter: contrast(1.25) url(#xray-blue);
+  filter: grayscale(1) contrast(1.25);
+}
+
+.avatarTint {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #0000ff;
+  mix-blend-mode: lighten;
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* ─── Hero text ──────────────────────────────────────────── */
