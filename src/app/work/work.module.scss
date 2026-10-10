@@ -22,12 +22,12 @@
 
 /*
   Role sits below the company name and uses the same deep
-  purple accent as the rest of the portfolio. !important is
+  light-blue accent as the rest of the portfolio. !important is
   required because Once UI's onBackground="brand-weak" prop
   injects its own color token at the same specificity.
 */
 .roleText {
-  color: rgba(128, 58, 222, 0.86) !important;
+  color: rgba(170, 200, 255, 0.9) !important;
   transition: color 0.18s ease;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .courseTitle {
-  color: rgba(128, 58, 222, 0.86) !important;
+  color: rgba(170, 200, 255, 0.9) !important;
   transition: color 0.18s ease;
 }
 

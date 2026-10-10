@@ -8,7 +8,7 @@
       off-center so it reads as a half-seen galaxy behind
       the hero text. Heavy blur keeps it atmospheric.
 
-   2. radial-gradient — soft purple glow anchored behind
+   2. radial-gradient — soft light-blue glow anchored behind
       the name, giving it luminous backing without any
       explicit lighting effect.
 
@@ -61,7 +61,7 @@
             bleed off the right edge, so only the inner
             arc of the swirl is visible over the text.
 
-  ::after   A soft radial ellipse of deep purple behind
+  ::after   A soft radial ellipse of light blue behind
             the left side of the hero, warmly backing the
             name and role text without hard edges.
 */
@@ -81,13 +81,13 @@
     background: conic-gradient(
       from 190deg at 66% 44%,
       transparent 0deg,
-      rgba(82, 20, 148, 0.07) 26deg,
-      rgba(106, 32, 186, 0.12) 54deg,
+      rgba(170, 200, 255, 0.07) 26deg,
+      rgba(170, 200, 255, 0.12) 54deg,
       transparent 82deg,
-      rgba(62, 10, 112, 0.05) 136deg,
-      rgba(90, 24, 160, 0.09) 194deg,
+      rgba(170, 200, 255, 0.05) 136deg,
+      rgba(170, 200, 255, 0.09) 194deg,
       transparent 222deg,
-      rgba(76, 16, 138, 0.06) 286deg,
+      rgba(170, 200, 255, 0.06) 286deg,
       transparent 360deg
     );
     filter: blur(52px);
@@ -102,9 +102,9 @@
     height: 140%;
     background: radial-gradient(
       ellipse at 42% 54%,
-      rgba(90, 22, 168, 0.17) 0%,
-      rgba(68, 12, 132, 0.08) 30%,
-      rgba(46, 4, 92, 0.04) 54%,
+      rgba(170, 200, 255, 0.17) 0%,
+      rgba(170, 200, 255, 0.08) 30%,
+      rgba(170, 200, 255, 0.04) 54%,
       transparent 70%
     );
     filter: blur(36px);
@@ -208,7 +208,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: rgba(128, 66, 238, 0.7);
+  background: rgba(170, 200, 255, 0.85);
   flex-shrink: 0;
 }
 
@@ -323,7 +323,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: rgba(128, 66, 240, 0.6);
+  background: rgba(170, 200, 255, 0.75);
   flex-shrink: 0;
 }
 
@@ -393,7 +393,7 @@
 
 /*
   Section headings are intentionally subordinate: small,
-  uppercase, and colored with muted purple rather than
+  uppercase, and colored with muted light blue rather than
   white. They orient the reader without competing with
   the value/skill titles below them.
 */
@@ -401,7 +401,7 @@
   font-size: 9.5px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(140, 70, 248, 0.55);
+  color: rgba(170, 200, 255, 0.8);
   font-family: var(--font-label);
   margin: 0 0 30px;
   font-weight: 500;
