@@ -1,6 +1,7 @@
 import { Schema, Meta } from "@once-ui-system/core";
 import { baseURL, home, about, person } from "@/resources";
 import { getPosts } from "@/utils/utils";
+import { BrainHero } from "@/components/BrainHero";
 import styles from "./home.module.scss";
 
 export async function generateMetadata() {
@@ -45,27 +46,8 @@ export default function Home() {
       />
 
       {/* Hero */}
-      <section className={styles.hero}>
-        <div className={styles.heroBg}>
-          <img
-            className={styles.brainImg}
-            src="/images/gallery/brain.jpg"
-            alt=""
-            aria-hidden="true"
-          />
-        </div>
-        <div className={styles.heroOverlay} />
-
+      <BrainHero>
         <div className={styles.heroContent}>
-          <div className={styles.portraitWrap}>
-            <div className={styles.portraitGlow} />
-            <img
-              className={styles.portraitImg}
-              src={person.avatar}
-              alt={person.name}
-            />
-            <div className={styles.portraitTint} aria-hidden="true" />
-          </div>
           <div className={styles.heroTextSide}>
             <p className={styles.overline}>
               Computer Science · Neural Engineering · Systems Design
@@ -83,7 +65,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </BrainHero>
 
       <div className={styles.divider} />
 
